@@ -1,0 +1,211 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="theme-color" content="#f5f5ee">
+  <meta name="description" content="Explore a C++ based Matrix Utility System with an interactive matrix calculator for common operations.">
+  <title>Matrix Utility System</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=DM+Mono:wght@400;500&family=DM+Sans:wght@400;500;600;700&family=Manrope:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="style.css">
+  <script src="script.js" defer></script>
+</head>
+<body>
+  <header class="site-header">
+    <nav class="nav-shell" aria-label="Main navigation">
+      <a class="brand" href="#home" aria-label="Matrix Utility System home">
+        <span class="brand-mark" aria-hidden="true"><span></span><span></span><span></span><span></span></span>
+        <span>Matrix <strong>Utility System</strong></span>
+      </a>
+      <button class="menu-toggle" type="button" aria-label="Open navigation menu" aria-expanded="false" aria-controls="primary-navigation">
+        <span></span><span></span>
+      </button>
+      <div class="nav-links" id="primary-navigation">
+        <a href="#home">Home</a>
+        <a href="#operations">Matrix Operations</a>
+        <a href="#features">Features</a>
+        <a href="#implementation">C++ Implementation</a>
+        <a href="#about">About</a>
+        <a href="#team">Team</a>
+      </div>
+    </nav>
+  </header>
+
+  <main>
+    <section class="hero section-grid" id="home" aria-labelledby="hero-title">
+      <div class="hero-copy">
+        <p class="eyebrow"><span class="eyebrow-dot"></span> BTech AIML · Academic Project</p>
+        <h1 id="hero-title">Matrix Utility<br><span>System</span></h1>
+        <p class="hero-subtitle">A C++ Based Matrix Operations and Utility System</p>
+        <p class="hero-description">Perform common matrix operations efficiently with an interactive and user-friendly matrix utility system.</p>
+        <div class="hero-actions">
+          <a class="button button-primary" href="#operations">Explore Operations <span aria-hidden="true">↘</span></a>
+          <a class="button button-outline" href="#about">View Project</a>
+        </div>
+        <div class="hero-meta"><span>01</span><span class="meta-rule"></span><span>Learn · Calculate · Understand</span></div>
+      </div>
+      <div class="hero-visual" aria-label="A three by three matrix containing the numbers one through nine">
+        <div class="visual-topline"><span>FIG. 01</span><span>3 × 3 MATRIX</span></div>
+        <div class="matrix-bracket">
+          <div class="hero-matrix" aria-hidden="true">
+            <span>1</span><span>2</span><span class="matrix-accent">3</span>
+            <span>4</span><span class="matrix-accent">5</span><span>6</span>
+            <span class="matrix-accent">7</span><span>8</span><span>9</span>
+          </div>
+        </div>
+        <div class="visual-bottomline"><span class="coordinate-mark">[ A ]</span><span>ROWS × COLUMNS</span></div>
+        <span class="visual-index" aria-hidden="true">M</span>
+      </div>
+    </section>
+
+    <section class="operations-section section-pad" id="operations" aria-labelledby="operations-title">
+      <div class="section-heading">
+        <div><p class="eyebrow">THE WORKBENCH <span> / 01</span></p><h2 id="operations-title">Matrix Operations</h2></div>
+        <p class="section-intro">Choose an operation, enter your values, and see the mathematics take shape.</p>
+      </div>
+      <div class="calculator-shell">
+        <div class="calculator-controls">
+          <div class="control-field operation-field">
+            <label for="operation-select">Operation</label>
+            <select id="operation-select">
+              <option value="add">Matrix Addition</option>
+              <option value="subtract">Matrix Subtraction</option>
+              <option value="multiply">Matrix Multiplication</option>
+              <option value="transpose">Transpose</option>
+              <option value="determinant">Determinant</option>
+              <option value="display">Display Matrix</option>
+            </select>
+          </div>
+          <div class="dimension-group" aria-label="Matrix A dimensions">
+            <span class="dimension-label">Matrix A</span>
+            <div class="dimension-inputs">
+              <label><span>Rows</span><input id="rows-a" type="number" min="1" max="8" value="2" inputmode="numeric"></label>
+              <span class="dimension-by" aria-hidden="true">×</span>
+              <label><span>Columns</span><input id="cols-a" type="number" min="1" max="8" value="2" inputmode="numeric"></label>
+            </div>
+          </div>
+          <div class="dimension-group" id="matrix-b-dimensions" aria-label="Matrix B dimensions">
+            <span class="dimension-label">Matrix B</span>
+            <div class="dimension-inputs">
+              <label><span>Rows</span><input id="rows-b" type="number" min="1" max="8" value="2" inputmode="numeric"></label>
+              <span class="dimension-by" aria-hidden="true">×</span>
+              <label><span>Columns</span><input id="cols-b" type="number" min="1" max="8" value="2" inputmode="numeric"></label>
+            </div>
+          </div>
+          <button class="button button-primary create-button" id="create-matrices" type="button">Create Matrix <span aria-hidden="true">＋</span></button>
+        </div>
+        <div class="calculator-divider"><span>INPUT VALUES</span><span class="divider-line"></span><span>MAX 8 × 8</span></div>
+        <div class="matrix-inputs" id="matrix-inputs">
+          <p class="empty-state">Set your matrix dimensions above, then create the input grids.</p>
+        </div>
+        <div class="calculator-footer">
+          <button class="button button-primary calculate-button" id="calculate-button" type="button">Calculate <span aria-hidden="true">→</span></button>
+          <button class="button button-quiet" id="reset-button" type="button"><span aria-hidden="true">↺</span> Reset</button>
+          <p class="input-hint">Enter a value in every cell before calculating.</p>
+        </div>
+        <div class="feedback" id="feedback" role="status" aria-live="polite" hidden></div>
+        <div class="result-area" id="result-area" aria-live="polite" hidden>
+          <div class="result-heading"><span class="result-kicker">OUTPUT</span><h3 id="result-title">Result</h3></div>
+          <div class="result-content" id="result-content"></div>
+        </div>
+      </div>
+    </section>
+
+    <section class="features-section section-pad" id="features" aria-labelledby="features-title">
+      <div class="section-heading">
+        <div><p class="eyebrow">BUILT FOR THE BASICS <span> / 02</span></p><h2 id="features-title">One toolkit. Core concepts.</h2></div>
+        <p class="section-intro">A hands-on way to connect linear algebra with foundational programming.</p>
+      </div>
+      <div class="features-grid">
+        <article class="feature-card"><span class="feature-icon icon-teal" aria-hidden="true">＋</span><span class="feature-number">01</span><h3>Matrix Addition</h3><p>Add two matrices of compatible dimensions.</p></article>
+        <article class="feature-card"><span class="feature-icon icon-coral" aria-hidden="true">−</span><span class="feature-number">02</span><h3>Matrix Subtraction</h3><p>Subtract corresponding matrix elements.</p></article>
+        <article class="feature-card"><span class="feature-icon icon-yellow" aria-hidden="true">×</span><span class="feature-number">03</span><h3>Matrix Multiplication</h3><p>Multiply compatible matrices using matrix multiplication rules.</p></article>
+        <article class="feature-card"><span class="feature-icon icon-green" aria-hidden="true">↗</span><span class="feature-number">04</span><h3>Matrix Transpose</h3><p>Convert rows into columns and columns into rows.</p></article>
+        <article class="feature-card"><span class="feature-icon icon-blue" aria-hidden="true">|A|</span><span class="feature-number">05</span><h3>Determinant</h3><p>Calculate determinants for supported square matrices.</p></article>
+        <article class="feature-card feature-card-dark"><span class="feature-icon icon-light" aria-hidden="true">⌘</span><span class="feature-number">06</span><h3>Interactive Calculator</h3><p>Perform matrix operations directly through the website.</p></article>
+      </div>
+    </section>
+
+    <section class="implementation-section section-pad" id="implementation" aria-labelledby="implementation-title">
+      <div class="implementation-copy">
+        <p class="eyebrow">FROM CONSOLE TO BROWSER <span> / 03</span></p>
+        <h2 id="implementation-title">C++<br>Implementation</h2>
+        <p>The original Matrix Utility System is implemented using C++. The project demonstrates fundamental programming concepts such as arrays, functions, loops, conditional statements, and mathematical algorithms.</p>
+        <button class="button button-light" id="cpp-info-button" type="button">View C++ Project <span aria-hidden="true">↗</span></button>
+        <p class="cpp-message" id="cpp-message" role="status" hidden>This website is the frontend demonstration of the C++ Matrix Utility System.</p>
+      </div>
+      <div class="code-window" aria-label="C++ example code for reading and displaying a two by two matrix">
+        <div class="code-titlebar"><div class="window-dots" aria-hidden="true"><i></i><i></i><i></i></div><span>matrix.cpp</span><span class="code-language">C++</span></div>
+        <pre><code><span class="code-include">#include</span> &lt;iostream&gt;
+<span class="code-keyword">using namespace</span> std;
+
+<span class="code-keyword">int</span> main() {
+    <span class="code-keyword">int</span> matrix[<span class="code-number">2</span>][<span class="code-number">2</span>];
+
+    cout &lt;&lt; <span class="code-string">"Enter matrix elements:"</span> &lt;&lt; endl;
+
+    <span class="code-keyword">for</span>(<span class="code-keyword">int</span> i = <span class="code-number">0</span>; i &lt; <span class="code-number">2</span>; i++) {
+        <span class="code-keyword">for</span>(<span class="code-keyword">int</span> j = <span class="code-number">0</span>; j &lt; <span class="code-number">2</span>; j++) {
+            cin &gt;&gt; matrix[i][j];
+        }
+    }
+
+    cout &lt;&lt; <span class="code-string">"Matrix:"</span> &lt;&lt; endl;
+
+    <span class="code-keyword">for</span>(<span class="code-keyword">int</span> i = <span class="code-number">0</span>; i &lt; <span class="code-number">2</span>; i++) {
+        <span class="code-keyword">for</span>(<span class="code-keyword">int</span> j = <span class="code-number">0</span>; j &lt; <span class="code-number">2</span>; j++) {
+            cout &lt;&lt; matrix[i][j] &lt;&lt; <span class="code-string">" "</span>;
+        }
+        cout &lt;&lt; endl;
+    }
+
+    <span class="code-keyword">return</span> <span class="code-number">0</span>;
+}</code></pre>
+      </div>
+    </section>
+
+    <section class="about-section section-pad" id="about" aria-labelledby="about-title">
+      <div class="about-heading"><p class="eyebrow">THE PROJECT <span> / 04</span></p><h2 id="about-title">About Project</h2></div>
+      <div class="about-content">
+        <p class="about-description">Matrix Utility System is a C++ based utility application designed to perform common matrix operations efficiently. The system provides a simple interface for performing mathematical operations on matrices and helps students understand arrays, functions, loops, conditional statements, and mathematical computations in C++.</p>
+        <div class="objectives">
+          <h3>Project objectives</h3>
+          <ul>
+            <li><span>01</span>Perform basic matrix operations</li>
+            <li><span>02</span>Understand matrix algorithms</li>
+            <li><span>03</span>Apply C++ programming concepts</li>
+            <li><span>04</span>Improve problem-solving skills</li>
+            <li><span>05</span>Provide a simple matrix utility interface</li>
+          </ul>
+        </div>
+      </div>
+    </section>
+
+    <section class="team-section section-pad" id="team" aria-labelledby="team-title">
+      <div class="section-heading">
+        <div><p class="eyebrow">PEOPLE BEHIND THE PROJECT <span> / 05</span></p><h2 id="team-title">Project Team</h2></div>
+        <p class="section-intro">Artificial Intelligence and Machine Learning</p>
+      </div>
+      <div class="team-grid">
+        <article class="team-card"><span class="team-initials" aria-hidden="true">GR</span><h3>G.V.S.P. Rajyam</h3><p>Roll Number: 25B11AI350</p><span class="team-index">01</span></article>
+        <article class="team-card"><span class="team-initials" aria-hidden="true">MS</span><h3>M. Sumalatha</h3><p>Roll Number: 25B11AI705</p><span class="team-index">02</span></article>
+        <article class="team-card"><span class="team-initials" aria-hidden="true">NM</span><h3>N. Marygrace</h3><p>Roll Number: 25B11AI669</p><span class="team-index">03</span></article>
+        <article class="team-card"><span class="team-initials" aria-hidden="true">BL</span><h3>B. Lahari Priya</h3><p>Roll Number: 25B11AI161</p><span class="team-index">04</span></article>
+      </div>
+      <div class="guide-row">
+        <span class="guide-label">PROJECT GUIDE</span>
+        <div><h3>P. Lakshmi Kantham</h3><p>Assistant Professor · Department of Artificial Intelligence and Machine Learning</p></div>
+        <span class="guide-mark" aria-hidden="true">✳</span>
+      </div>
+    </section>
+  </main>
+
+  <footer class="site-footer">
+    <a class="brand footer-brand" href="#home"><span class="brand-mark" aria-hidden="true"><span></span><span></span><span></span><span></span></span><span>Matrix <strong>Utility System</strong></span></a>
+    <p>C++ Based Matrix Operations and Utility System</p>
+    <a href="#home" class="back-top">Back to top ↑</a>
+  </footer>
+</body>
+</html>
